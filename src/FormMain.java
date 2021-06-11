@@ -640,11 +640,24 @@ public class FormMain extends JFrame implements ActionListener {
             txtNhapTen.setForeground(Color.WHITE);
             txtPort.setBorder(new TitledBorder(null, "Nhập Port", TitledBorder.LEADING, TitledBorder.TOP,
                     new Font("Times New Roman", Font.BOLD, 18), Color.WHITE));
+            txtIP.setBorder(new TitledBorder(null, "Nhập IP", TitledBorder.LEADING, TitledBorder.TOP,
+                    new Font("Times New Roman", Font.BOLD, 18), Color.WHITE));
+            lblCheDo.setBorder(new TitledBorder(null, "Chế độ", TitledBorder.LEADING, TitledBorder.TOP,
+                    new Font("Times New Roman", Font.BOLD, 25), Color.WHITE));
+            lblKetNoi.setBorder(new TitledBorder(null, "Kết nối", TitledBorder.LEADING, TitledBorder.TOP,
+                    new Font("Times New Roman", Font.BOLD, 25), Color.WHITE));
+
+            lblDiemSo.setBorder(new TitledBorder(null, "Điểm số", TitledBorder.LEADING, TitledBorder.TOP,
+                    new Font("Times New Roman", Font.BOLD, 25), Color.WHITE));
+
             txtNhapTen.setForeground(Color.WHITE);
             txtPort.setForeground(Color.WHITE);
+            txtIP.setForeground(Color.WHITE);
+
             radioLight.setForeground(Color.WHITE);
             radioDark.setForeground(Color.WHITE);
-            txtIP.setForeground(Color.WHITE);
+
+
             for (int i = 0; i < listButton.size(); i++) {
                 listButton.get(i).setBackground(Color.BLACK);
                 listButton.get(i).setForeground(Color.WHITE);
@@ -675,6 +688,14 @@ public class FormMain extends JFrame implements ActionListener {
             txtPort.setBorder(new TitledBorder(null, "Nhập Port", TitledBorder.LEADING, TitledBorder.TOP,
                     new Font("Times New Roman", Font.BOLD, 18), null));
 
+            txtIP.setBorder(new TitledBorder(null, "Nhập IP", TitledBorder.LEADING, TitledBorder.TOP,
+                    new Font("Times New Roman", Font.BOLD, 18), null));
+            lblCheDo.setBorder(new TitledBorder(null, "Chế độ", TitledBorder.LEADING, TitledBorder.TOP,
+                    new Font("Times New Roman", Font.BOLD, 25), null));
+            lblKetNoi.setBorder(new TitledBorder(null, "Kết nối", TitledBorder.LEADING, TitledBorder.TOP,
+                    new Font("Times New Roman", Font.BOLD, 25), null));
+            lblDiemSo.setBorder(new TitledBorder(null, "Điểm số", TitledBorder.LEADING, TitledBorder.TOP,
+                    new Font("Times New Roman", Font.BOLD, 25), null));
 
             radioLight.setBackground(null);
             radioLight.setForeground(null);
