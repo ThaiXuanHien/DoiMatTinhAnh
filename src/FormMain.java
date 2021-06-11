@@ -68,17 +68,18 @@ public class FormMain extends JFrame implements ActionListener {
      * Launch the application.
      */
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    FormMain frame = new FormMain();
-                    frame.setVisible(true);
-                    frame.setLocationRelativeTo(null);
-                    frame.disableComponent();
+        EventQueue.invokeLater(() -> {
+            try {
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                FormMain frame = new FormMain();
+                frame.setVisible(true);
+                frame.setLocationRelativeTo(null);
+                frame.disableComponent();
+                DialogHuongdan dialogHuongdan = new DialogHuongdan();
+                dialogHuongdan.setVisible(true);
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }
@@ -92,7 +93,7 @@ public class FormMain extends JFrame implements ActionListener {
         setResizable(false);
         setTitle("Server");
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        setBounds(100, 100, 890, 1080);
+        setBounds(100, 100, 890, 1045);
         getContentPane().setLayout(null);
 
         addWindowListener(new WindowAdapter() {
@@ -114,51 +115,49 @@ public class FormMain extends JFrame implements ActionListener {
 
         panelNumber = new JPanel();
         panelNumber.setBorder(new LineBorder(Color.WHITE));
-        panelNumber.setBounds(0, 0, 700, 845);
+        panelNumber.setBounds(0, 0, 700, 800);
         getContentPane().add(panelNumber);
         panelNumber.setLayout(new GridLayout(10, 10));
 
         panelThongTin = new JPanel();
         panelThongTin.setBorder(new LineBorder(Color.WHITE));
-        panelThongTin.setBounds(702, 0, 182, 1045);
+        panelThongTin.setBounds(702, 0, 182, 1000);
         getContentPane().add(panelThongTin);
         panelThongTin.setLayout(null);
 
         btnChoiMoi = new JButton("Ch\u01A1i m\u1EDBi");
-        btnChoiMoi.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                str = "";
+        btnChoiMoi.addActionListener(arg0 -> {
+            str = "";
 
-                // panelNumber.repaint();
-                // panelNumber.removeAll();
-                // panelNumber.revalidate();
-                // panelNumber.updateUI();
-                listNumber = new ArrayList<>();
-                for (int i = 0; i < 100; ) {
-                    listNumber.add(++i);
-                }
-                Random rd = new Random();
-                for (int i = 0; i < 100; i++) {
-                    int r = rd.nextInt(listNumber.size());
-                    // listNumberRandom.add(listNumber.get(r));
-                    str += listNumber.get(r) + " ";
-                    listNumber.remove(r);
-                }
-                try {
-                    // oos.writeObject(listNumberRandom);
-                    dos.writeUTF("choiMoi," + str + "," + isNew);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                System.out.println(str);
-                System.out.println(isNew);
-                // getContentPane().add(panelNumber);
-                // panelNumber.setVisible(true);
-                // panelNumber.updateUI();
-                // choiMoi(listNumberRandom);
-
-                // choiMoi(str);
+            // panelNumber.repaint();
+            // panelNumber.removeAll();
+            // panelNumber.revalidate();
+            // panelNumber.updateUI();
+            listNumber = new ArrayList<>();
+            for (int i = 0; i < 100; ) {
+                listNumber.add(++i);
             }
+            Random rd = new Random();
+            for (int i = 0; i < 100; i++) {
+                int r = rd.nextInt(listNumber.size());
+                // listNumberRandom.add(listNumber.get(r));
+                str += listNumber.get(r) + " ";
+                listNumber.remove(r);
+            }
+            try {
+                // oos.writeObject(listNumberRandom);
+                dos.writeUTF("choiMoi," + str + "," + isNew);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(str);
+            System.out.println(isNew);
+            // getContentPane().add(panelNumber);
+            // panelNumber.setVisible(true);
+            // panelNumber.updateUI();
+            // choiMoi(listNumberRandom);
+
+            // choiMoi(str);
         });
 
         btnChoiMoi.setFont(new Font("Times New Roman", Font.BOLD, 25));
@@ -166,22 +165,20 @@ public class FormMain extends JFrame implements ActionListener {
         panelThongTin.add(btnChoiMoi);
 
         btnThoat = new JButton("Tho\u00E1t");
-        btnThoat.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (JOptionPane.showConfirmDialog(null, "Bạn có muốn Thoát ?", "Thoát", JOptionPane.YES_NO_OPTION,
-                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
-                    try {
-                        System.out.println(isNew);
-                        dos.writeUTF("thoat," + isNew);
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
-                    }
-                    System.exit(0);
+        btnThoat.addActionListener(e -> {
+            if (JOptionPane.showConfirmDialog(null, "Bạn có muốn Thoát ?", "Thoát", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                try {
+                    System.out.println(isNew);
+                    dos.writeUTF("thoat," + isNew);
+                } catch (IOException e1) {
+                    e1.printStackTrace();
                 }
+                System.exit(0);
             }
         });
         btnThoat.setFont(new Font("Times New Roman", Font.BOLD, 25));
-        btnThoat.setBounds(12, 989, 158, 43);
+        btnThoat.setBounds(12, 933, 158, 43);
         panelThongTin.add(btnThoat);
 
         lblNgChoi1 = new JLabel("");
@@ -238,36 +235,33 @@ public class FormMain extends JFrame implements ActionListener {
         txtPort.setBackground(null);
 
         btnKetNoi = new JButton("K\u1EBFt n\u1ED1i");
-        btnKetNoi.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                // enableComponent();
-                //
-                // lblNgChoi1.setText(txtNhapTen.getText());
-                // try {
-                // serverSocket = new
-                // ServerSocket(Integer.parseInt(txtPort.getText()));
-                // socket = serverSocket.accept();
-                // ois = new ObjectInputStream(socket.getInputStream());
-                // oos = new ObjectOutputStream(socket.getOutputStream());
-                // oos.writeObject("ten," + txtNhapTen.getText());
-                // getDataClient();
-                // } catch (Exception e) {
-                // e.printStackTrace();
-                // }
-                try {
-                    lblNgChoi1.setText(txtNhapTen.getText());
-                    if (!connect()) {
-                        initializeServer();
-                    }
-
-                    getDataClient();
-
-                    dos.writeUTF("ten," + txtNhapTen.getText());
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-
+        btnKetNoi.addActionListener(arg0 -> {
+            // enableComponent();
+            //
+            // lblNgChoi1.setText(txtNhapTen.getText());
+            // try {
+            // serverSocket = new
+            // ServerSocket(Integer.parseInt(txtPort.getText()));
+            // socket = serverSocket.accept();
+            // ois = new ObjectInputStream(socket.getInputStream());
+            // oos = new ObjectOutputStream(socket.getOutputStream());
+            // oos.writeObject("ten," + txtNhapTen.getText());
+            // getDataClient();
+            // } catch (Exception e) {
+            // e.printStackTrace();
+            // }
+            try {
+                lblNgChoi1.setText(txtNhapTen.getText());
+                if (!connect()) {
+                    initializeServer();
                 }
+
+                getDataClient();
+
+                dos.writeUTF("ten," + txtNhapTen.getText());
+
+            } catch (IOException e) {
+                e.printStackTrace();
 
             }
 
@@ -317,20 +311,20 @@ public class FormMain extends JFrame implements ActionListener {
         txtIP.setColumns(10);
         txtIP.setBorder(new TitledBorder(null, "Nhập IP", TitledBorder.LEADING, TitledBorder.TOP,
                 new Font("Times New Roman", Font.BOLD, 18), null));
-        txtIP.setBackground((Color) null);
+        txtIP.setBackground(null);
         txtIP.setBounds(12, 657, 158, 75);
         panelThongTin.add(txtIP);
 
-        JButton btnHuongDan = new JButton("Hướng dẫn");
-        btnHuongDan.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                DialogHuongdan dialogHuongdan = new DialogHuongdan();
-                dialogHuongdan.setVisible(true);
-            }
-        });
-        btnHuongDan.setFont(new Font("Times New Roman", Font.BOLD, 25));
-        btnHuongDan.setBounds(12, 933, 158, 43);
-        panelThongTin.add(btnHuongDan);
+//        JButton btnHuongDan = new JButton("Hướng dẫn");
+//        btnHuongDan.addActionListener(new ActionListener() {
+//            public void actionPerformed(ActionEvent arg0) {
+//                DialogHuongdan dialogHuongdan = new DialogHuongdan();
+//                dialogHuongdan.setVisible(true);
+//            }
+//        });
+//        btnHuongDan.setFont(new Font("Times New Roman", Font.BOLD, 25));
+//        btnHuongDan.setBounds(12, 933, 158, 43);
+//        panelThongTin.add(btnHuongDan);
 
         lblKetNoi = new JLabel("");
         lblKetNoi.setBounds(12, 538, 158, 270);
@@ -351,7 +345,7 @@ public class FormMain extends JFrame implements ActionListener {
         panelThongTin.add(lblCheDo);
         panelChat = new JPanel();
         panelChat.setBorder(new LineBorder(Color.WHITE));
-        panelChat.setBounds(0, 845, 700, 200);
+        panelChat.setBounds(0, 800, 700, 200);
         getContentPane().add(panelChat);
         panelChat.setLayout(null);
 
@@ -371,16 +365,14 @@ public class FormMain extends JFrame implements ActionListener {
         txtNhapTinNhan.setColumns(10);
 
         btnGuiTinNhan = new JButton("G\u1EEDi");
-        btnGuiTinNhan.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                if (txtNhapTinNhan.getText() != "") {
-                    try {
-                        dos.writeUTF("Chat," + txtNhapTen.getText() + " : " + txtNhapTinNhan.getText());
-                        txtANoiDungTinNhan.append("\nTôi : " + txtNhapTinNhan.getText());
-                        txtNhapTinNhan.setText("");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+        btnGuiTinNhan.addActionListener(arg0 -> {
+            if (txtNhapTinNhan.getText() != "") {
+                try {
+                    dos.writeUTF("Chat," + txtNhapTen.getText() + " : " + txtNhapTinNhan.getText());
+                    txtANoiDungTinNhan.append("\nTôi : " + txtNhapTinNhan.getText());
+                    txtNhapTinNhan.setText("");
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
@@ -454,7 +446,7 @@ public class FormMain extends JFrame implements ActionListener {
                             dos.writeUTF("ten," + txtNhapTen.getText());
                         }
 
-                        String stream = (String) dis.readUTF();
+                        String stream = dis.readUTF();
                         String[] data = stream.split(",");
                         if (data[0].equals("choiMoi")) {
                             if (data[2].equals("0")) {
@@ -531,30 +523,27 @@ public class FormMain extends JFrame implements ActionListener {
         for (int i = 0; i < 100; i++) {
             int a = i;
             JButton btn = new JButton();
-            btn.setFont(new Font("Times New Roman", Font.BOLD, 22));
+            btn.setFont(new Font("Times New Roman", Font.BOLD, 16));
             btn.setText("" + arrlist.get(i));
             if (radioDark.isSelected()) {
                 btn.setBackground(Color.BLACK);
                 btn.setForeground(Color.WHITE);
             }
-            btn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if (Integer.parseInt(btn.getText()) == soTiepTheo) {
-                        btn.setVisible(false);
-                        diem++;
-                        try {
-                            dos.writeUTF("click," + a + "," + diem); // a : vị trí nút
-                        } catch (IOException e1) {
-                            e1.printStackTrace();
-                        }
-                        if (soTiepTheo != 10) {
-                            soTiepTheo++;
-                            lblSoTiepTheo_number.setText(soTiepTheo + "");
-                            lblDiemNgChoi1.setText(diem + "");
-                        }
+            btn.addActionListener(e -> {
+                if (Integer.parseInt(btn.getText()) == soTiepTheo) {
+                    btn.setVisible(false);
+                    diem++;
+                    try {
+                        dos.writeUTF("click," + a + "," + diem); // a : vị trí nút
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                    if (soTiepTheo != 10) {
+                        soTiepTheo++;
+                        lblSoTiepTheo_number.setText(soTiepTheo + "");
                         lblDiemNgChoi1.setText(diem + "");
                     }
+                    lblDiemNgChoi1.setText(diem + "");
                 }
             });
             listButton.add(btn);
